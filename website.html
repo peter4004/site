@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pro Dev Website</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(45deg, #28313B, #485461);
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .main {
+            padding-top: 120px;
+            text-align: center;
+        }
+
+        section {
+            padding: 60px 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #28313B;
+        }
+
+        .project {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .project h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #28313B;
+        }
+
+        .project p {
+            margin-bottom: 10px;
+        }
+
+        .project a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project a:hover {
+            text-decoration: underline;
+        }
+
+        /* Notepad Section */
+        #notepad {
+            display: none;
+            background: #f9f9f9;
+            padding: 20px;
+            border: 2px solid #2575fc;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        #notepad textarea {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            resize: none;
+        }
+
+        #notepad button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #2575fc;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #notepad button:hover {
+            background-color: #1e65d0;
+        }
+
+        #notepad #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #28313B;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .hidden-input {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            padding: 10px;
+            color: #fff;
+            outline: none;
+            border-bottom: 2px solid #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden-input.visible {
+            opacity: 1;
+        }
+
+        /* Keyframes */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        Pro Dev Website
+    </header>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- Projects Section -->
+        <section class="scrolling">
+            <h1>My Projects</h1>
+            <div class="project">
+                <h2>Project One</h2>
+                <p>This is a description of Project One. It showcases what the project is about and what technologies were used.</p>
+                <a href="#" target="_blank">View Live Demo</a> | <a href="#" target="_blank">View Code</a>
+            </div>
+            <div class="project">
+                <h2>Project Two</h2>
+                <p>This is a description of Project Two. Highlight its features and include any notable achievements or technologies.</p>
+                <a href="#" target="_blank">View Live Demo</a> | <a href="#" target="_blank">View Code</a>
+            </div>
+            <!-- Add more projects here as needed -->
+        </section>
+
+        <!-- Secret Section -->
+        <section id="notepad">
+            <button id="closeButton">❌</button>
+            <h1>Secret Notepad</h1>
+            <textarea id="codeInput" placeholder="Write your code here..."></textarea>
+            <button id="saveButton">Save Code</button>
+        </section>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        © 2024 ProDev. All Rights Reserved.
+        <span id="emoji" class="hidden-trigger" style="position: absolute; bottom: 5px; right: 10px; cursor: pointer;">👀</span>
+        <input type="text" id="hiddenInput" class="hidden-input" placeholder="Enter secret code">
+    </footer>
+
+    <!-- JavaScript for Scroll Animations, Secret Input & Notepad -->
+    <script>
+        // Scroll Animations
+        document.addEventListener('scroll', function () {
+            const elements = document.querySelectorAll('.scrolling');
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            elements.forEach(element => {
+                if (scrollPosition > element.offsetTop + 100) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+
+        // Secret Input Handling
+        const emoji = document.getElementById('emoji');
+        const hiddenInput = document.getElementById('hiddenInput');
+        const notepad = document.getElementById('notepad');
+
+        // Click on emoji to reveal or hide the secret input
+        emoji.addEventListener('click', function () {
+            if (hiddenInput.classList.contains('visible')) {
+                hiddenInput.classList.remove('visible');
+            } else {
+                hiddenInput.classList.add('visible');
+                hiddenInput.focus();
+            }
+        });
+
+        // When a correct passcode is entered, show the notepad section
+        hiddenInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const passcode = hiddenInput.value;
+                if (passcode === 'opensesame') {
+                    notepad.style.display = 'block';
+                    hiddenInput.value = '';
+                    hiddenInput.classList.remove('visible');
+                }
+            }
+        });
+
+        // Notepad Save Functionality
+        const codeInput = document.getElementById('codeInput');
+        const saveButton = document.getElementById('saveButton');
+        const closeButton = document.getElementById('closeButton');
+
+        saveButton.addEventListener('click', function () {
+            const code = codeInput.value;
+            if (code) {
+                localStorage.setItem('savedCode', code);
+                alert('Code saved successfully!');
+            } else {
+                alert('No code to save.');
+            }
+        });
+
+        closeButton.addEventListener('click', function () {
+            notepad.style.display = 'none';
+        });
+
+        // Load saved code on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedCode = localStorage.getItem('savedCode');
+            if (savedCode) {
+                codeInput.value = savedCode;
+            }
+        });
+    </script>
+</body>
+</html>
